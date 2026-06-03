@@ -1,0 +1,60 @@
+name: CI - MLflow Training
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:   # Bisa dipicu manual dari GitHub UI
+
+jobs:
+  train:
+    name: Train Heart Disease Model
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repository
+      - name: Run actions/checkout@v3
+        uses: actions/checkout@v3
+
+      # 2. Setup Python 3.12.7
+      - name: Set up Python 3.12.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12.7"
+
+      # 3. Cek environment
+      - name: Check environment
+        run: |
+          python --version
+          pip --version
+          echo "Working directory: $(pwd)"
+          ls -la
+
+      # 4. Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install mlflow==2.19.0 scikit-learn==1.5.2 pandas==2.2.3 \
+                      numpy==1.26.4 matplotlib==3.9.2 seaborn==0.13.2
+
+      # 5. Jalankan MLflow Project
+      - name: Run mlflow project
+        run: |
+          cd MLProject
+          mlflow run . --env-manager=local
+
+      # 6. Ambil run_id terbaru
+      - name: Get latest MLflow run_id
+        run: |
+          cd MLProject
+          python - <<'EOF'
+          import mlflow
+          mlflow.set_tracking_uri("mlruns")
+          client = mlflow.tracking.MlflowClient()
+          exp = client.get_experiment_by_name("heart-disease-ci")
+          if exp:
+              runs = client.search_runs(exp.experiment_id, order_by=["start_time DESC"], max_results=1)
+              if runs:
+                  print(f"Latest run_id : {runs[0].info.run_id}")
+                  print(f"Status        : {runs[0].info.status}")
+                  print(f"Metrics       : {runs[0].data.metrics}")
+          EOF
