@@ -58,3 +58,11 @@ jobs:
                   print(f"Status        : {runs[0].info.status}")
                   print(f"Metrics       : {runs[0].data.metrics}")
           EOF
+
+      # 7. Upload MLflow artifacts
+      - name: Upload MLflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-results
+          path: MLProject/mlruns/
+          retention-days: 90
