@@ -67,7 +67,8 @@ def evaluate_model(model, X_test, y_test):
 
 
 def main():
-    mlflow.set_tracking_uri("http://127.0.0.1:5000")
+    # Use file-based tracking (default) instead of server
+    # Remove: mlflow.set_tracking_uri("http://127.0.0.1:5000")
     mlflow.set_experiment("heart-disease-classification")
 
     print("Memuat dataset...")
@@ -85,7 +86,9 @@ def main():
         print("\nMengevaluasi model...")
         metrics = evaluate_model(model, X_test, y_test)
 
-    print("\nTraining selesai. Buka MLflow UI:")
+    print("\nTraining selesai!")
+    print("MLflow logs tersimpan di folder 'mlruns'")
+    print("Untuk membuka UI lokal:")
     print("  mlflow ui --host 127.0.0.1 --port 5000")
 
 
