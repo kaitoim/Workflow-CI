@@ -13,7 +13,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR   = "/home/runner/work/Workflow-CI/Workflow-CI"  # Workflow-CI root in CI
 DATA_DIR   = os.path.join(BASE_DIR, "heart_preprocessing")
 TRAIN_PATH = os.path.join(DATA_DIR, "heart_train.csv")
 TEST_PATH  = os.path.join(DATA_DIR, "heart_test.csv")
