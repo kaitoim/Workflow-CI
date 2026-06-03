@@ -70,3 +70,13 @@ jobs:
           name: mlflow-results
           path: MLProject/mlruns/
           retention-days: 90
+
+      # 8. Push MLflow artifacts to repository (Permanent storage)
+      - name: Push MLflow artifacts to repo
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add MLProject/mlruns/
+          git commit -m "CI: Add MLflow training artifacts and metrics" || true
+          git push origin main
+        continue-on-error: true
