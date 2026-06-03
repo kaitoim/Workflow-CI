@@ -77,14 +77,12 @@ def main():
     # Aktifkan autolog sebelum training
     mlflow.sklearn.autolog()
 
-    print("\nMemulai MLflow run dengan autolog...")
-    with mlflow.start_run(run_name="RandomForest_baseline"):
+    print("\nMemulai training dengan autolog...")
+    print("Melatih model...")
+    model = train_model(X_train, y_train)
 
-        print("Melatih model...")
-        model = train_model(X_train, y_train)
-
-        print("\nMengevaluasi model...")
-        metrics = evaluate_model(model, X_test, y_test)
+    print("\nMengevaluasi model...")
+    metrics = evaluate_model(model, X_test, y_test)
 
     print("\nTraining selesai!")
     print("MLflow logs tersimpan di folder 'mlruns'")
