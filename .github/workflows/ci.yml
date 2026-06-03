@@ -1,9 +1,13 @@
-name: CI - MLflow Training
+Name: CI - MLflow Training
 
 on:
   push:
     branches: [ "main" ]
   workflow_dispatch:   # Bisa dipicu manual dari GitHub UI
+
+# Tambahkan 2 baris ini untuk memaksa runner menggunakan Node 24
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
 jobs:
   train:
@@ -32,7 +36,7 @@ jobs:
       # 4. Install dependencies
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install mlflow==2.19.0 scikit-learn==1.5.2 pandas==2.2.3 \
                       numpy==1.26.4 matplotlib==3.9.2 seaborn==0.13.2
 
