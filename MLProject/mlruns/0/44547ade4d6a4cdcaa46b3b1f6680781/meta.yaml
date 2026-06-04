@@ -1,0 +1,15 @@
+artifact_uri: file:///home/runner/work/Workflow-CI/Workflow-CI/MLProject/mlruns/0/44547ade4d6a4cdcaa46b3b1f6680781/artifacts
+end_time: 1780548070338
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 44547ade4d6a4cdcaa46b3b1f6680781
+run_name: calm-crab-876
+run_uuid: 44547ade4d6a4cdcaa46b3b1f6680781
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1780548067051
+status: 3
+tags: []
+user_id: runner
