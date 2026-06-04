@@ -67,7 +67,7 @@ def evaluate_model(model, X_test, y_test):
 
 
 def main():
-    mlflow.set_tracking_uri("mlruns")
+    # mlflow.set_tracking_uri("mlruns")
     mlflow.set_experiment("heart-disease-classification")
 
     print("Memuat dataset...")
@@ -77,13 +77,13 @@ def main():
     mlflow.sklearn.autolog()
 
     print("\nMemulai MLflow run dengan autolog...")
-    with mlflow.start_run(run_name="RandomForest_baseline"):
+    # with mlflow.start_run(run_name="RandomForest_baseline"):
 
-        print("Melatih model...")
-        model = train_model(X_train, y_train)
+    print("Melatih model...")
+    model = train_model(X_train, y_train)
 
-        print("\nMengevaluasi model...")
-        metrics = evaluate_model(model, X_test, y_test)
+    print("\nMengevaluasi model...")
+    metrics = evaluate_model(model, X_test, y_test)
 
     print("\nTraining selesai. Buka MLflow UI:")
     print("  mlflow ui --host 127.0.0.1 --port 5000")
