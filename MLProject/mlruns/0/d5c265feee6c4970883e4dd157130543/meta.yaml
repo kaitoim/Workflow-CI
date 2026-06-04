@@ -1,0 +1,15 @@
+artifact_uri: file:///home/runner/work/Workflow-CI/Workflow-CI/MLProject/mlruns/0/d5c265feee6c4970883e4dd157130543/artifacts
+end_time: 1780547171046
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d5c265feee6c4970883e4dd157130543
+run_name: angry-sponge-928
+run_uuid: d5c265feee6c4970883e4dd157130543
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1780547167649
+status: 3
+tags: []
+user_id: runner
