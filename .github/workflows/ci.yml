@@ -57,6 +57,13 @@ jobs:
                   print(f"Metrics       : {runs[0].data.metrics}")
           EOF
 
+      - name: Upload MLflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-results
+          path: MLProject/mlruns/
+          retention-days: 90
+          
       - name: Push MLflow artifacts to GitHub
         run: |
           git config user.name "GitHub Actions"
